@@ -46,3 +46,14 @@ firebase deploy
 ## 12. Update Deployment
 npm run build
 firebase deploy
+
+
+Rules:
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /details/{document} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
